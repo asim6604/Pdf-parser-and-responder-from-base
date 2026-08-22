@@ -1,13 +1,16 @@
 import chromadb
+import uuid
 from parsing import chunking
 from embedding import embedding
-def Vector():
+import hashlib
+def Vector(embeddings,chunks):
     chroma_client = chromadb.Client()
-    collection = chroma_client.create_collection(name="my_collection")
-    embeddings=embedding();
+    file_hash = hashlib.sha256(embeddings).hexdigest()
+    collection = chroma_client.get_or_create_collection(name="file_hash")
+    dir(chroma_client)
     List_embed=embeddings.tolist();
 
-    chunks=chunking();
+   
     length=len(chunks)
     id=[]
     for i in range(0,length,1):

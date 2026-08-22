@@ -1,17 +1,9 @@
-from pypdf import PdfReader
-reader = PdfReader("C:\\Users\\LENOVO\\Downloads\\my.pdf")
-
-
-complete=""
-for i in range(len(reader.pages)):
-    page=reader.pages[i]
-    neet=page.extract_text()
-    complete=complete+ " "+neet
-
-
-
-
-def chunking():
+def chunking(reader):
+    complete=""
+    for i in range(len(reader.pages)):
+        page=reader.pages[i]
+        neet=page.extract_text()
+        complete=complete+ " "+neet
     chunk=[]
     start=0
     end=500
@@ -26,6 +18,7 @@ def chunking():
         
         end=end+450;
     return chunk
+
 
 
 
